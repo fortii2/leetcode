@@ -1,0 +1,66 @@
+//Given an integer array nums, return true if there exists a triple of indices (
+//i, j, k) such that i < j < k and nums[i] < nums[j] < nums[k]. If no such 
+//indices exists, return false. 
+//
+// 
+// Example 1: 
+//
+// 
+//Input: nums = [1,2,3,4,5]
+//Output: true
+//Explanation: Any triplet where i < j < k is valid.
+// 
+//
+// Example 2: 
+//
+// 
+//Input: nums = [5,4,3,2,1]
+//Output: false
+//Explanation: No triplet exists.
+// 
+//
+// Example 3: 
+//
+// 
+//Input: nums = [2,1,5,0,4,6]
+//Output: true
+//Explanation: One of the valid triplet is (1, 4, 5), because nums[1] == 1 < 
+//nums[4] == 4 < nums[5] == 6.
+// 
+//
+// 
+// Constraints: 
+//
+// 
+// 1 <= nums.length <= 5 * 10⁵ 
+// -2³¹ <= nums[i] <= 2³¹ - 1 
+// 
+//
+// 
+//Follow up: Could you implement a solution that runs in 
+//O(n) time complexity and 
+//O(1) space complexity?
+//
+// Related Topics Array Greedy 👍 8760 👎 682
+
+
+import java.util.Arrays;
+
+//leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
+    public boolean increasingTriplet(int[] nums) {
+        int min1 = Integer.MAX_VALUE;
+        int min2 = Integer.MAX_VALUE;
+
+        // when arrive to else, means this number is bigger than current min1 and min2.
+        for (int num : nums) {
+            if (num <= min1) min1 = num;
+            else if (num <= min2) min2 = num;
+            else return true;
+        }
+
+        return false;
+    }
+}
+//leetcode submit region end(Prohibit modification and deletion)
+
