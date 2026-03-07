@@ -11,27 +11,36 @@ import java.util.Stack;
 class Solution {
     public boolean isValid(String s) {
 
+        if (s.length() % 2 != 0) {
+            return false;
+        }
+
         Stack<Character> stack = new Stack<>();
 
         for (char c : s.toCharArray()) {
-            if (c == '(' || c == '{' || c == '[') {
+            if (c == '(' || c == '[' || c == '{') {
                 stack.push(c);
             } else {
-                if (stack.size() <= 0) {
+
+                if (stack.isEmpty()) {
                     return false;
                 }
 
                 char temp = stack.pop();
 
-                if (c == ')' && temp != '('
-                        || c == '}' && temp != '{'
-                        || c == ']' && temp != '[') {
+                if (c == ')' && temp != '(') {
+                    return false;
+                }
+                if (c == ']' && temp != '[') {
+                    return false;
+                }
+                if (c == '}' && temp != '{') {
                     return false;
                 }
             }
         }
 
-        return stack.size() == 0 ? true : false;
+        return stack.isEmpty();
     }
 }
 // @lc code=end
