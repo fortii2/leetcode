@@ -1,67 +1,48 @@
-/*
- * @lc app=leetcode id=102 lang=java
- *
- * [102] Binary Tree Level Order Traversal
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
  */
-
-// @lc code=start
-
-import java.util.*;
-
-public class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode() {
-    }
-
-    TreeNode(int val) {
-        this.val = val;
-    }
-
-    TreeNode(int val, TreeNode left, TreeNode right) {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-}
-
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
 
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        List<List<Integer>> res = new ArrayList<>();
 
         if (root == null) {
             return res;
         }
 
-        Deque<TreeNode> q = new ArrayDeque<>();
+        Queue<TreeNode> q = new LinkedList<>();
+
         q.offer(root);
 
         while (!q.isEmpty()) {
             int size = q.size();
-            List<Integer> level = new ArrayList<>();
+            List<Integer> layer = new ArrayList<>();
 
-            for (int i = 0; i < size; i++) {
-
+            while (size-- > 0) {
                 TreeNode cur = q.poll();
-                level.add(cur.val);
+                layer.add(cur.val);
 
-                if (cur.left != null) {
+                if (cur.left != null)
                     q.offer(cur.left);
-                }
-
-                if (cur.right != null) {
+                if (cur.right != null)
                     q.offer(cur.right);
-                }
             }
 
-            res.add(level);
+            res.add(layer);
         }
 
         return res;
     }
 }
-// @lc code=end
-
