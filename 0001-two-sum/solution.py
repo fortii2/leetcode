@@ -1,11 +1,15 @@
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        previous = {}
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
+        # return index
+        mapy = {}
 
-        for i in range(len(nums)):
-            diff = target - nums[i]
+        for i, num in enumerate(nums):
+            looking = target - num
 
-            if diff in previous:
-                return [previous.get(diff), i]
-            
-            previous[nums[i]] = i
+            if looking in mapy:
+                return [mapy[looking], i]
+
+            mapy[num] = i
+
+        return None
+
