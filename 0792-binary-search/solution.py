@@ -5,12 +5,13 @@ class Solution:
 
         while p < q:
             mid = (p + q) // 2
-            
+
             if nums[mid] == target:
                 return mid
             elif nums[mid] < target:
                 p = mid + 1
             else:
                 q = mid
-            
+
         return -1
+
